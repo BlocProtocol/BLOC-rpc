@@ -1,26 +1,26 @@
 {
-  "name": "turtlecoin-rpc",
-  "version": "0.8.4",
-  "description": "TurtleCoin RPC API Interface in NodeJS",
+  "name": "bloc-rpc",
+  "version": "3.0.1",
+  "description": "BLOC RPC API Interface in NodeJS",
   "main": "index.js",
   "scripts": {
     "test": "standard"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brandonlehmann/turtlecoin-rpc.git"
+    "url": "git+https://github.com/furiousteam/BLOC-rpc.git"
   },
   "keywords": [
-    "TurtleCoin",
+    "BLOC",
     "RPC",
     "API"
   ],
-  "author": "Brandon Lehmann <brandonlehmann@gmail.com>",
+  "author": "BLOC",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/brandonlehmann/turtlecoin-rpc/issues"
+    "url": "https://github.com/furiousteam/BLOC-rpc.git/issues"
   },
-  "homepage": "https://github.com/brandonlehmann/turtlecoin-rpc#readme",
+  "homepage": "https://github.com/furiousteam/BLOC-rpc.git#readme",
   "dependencies": {
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5"

@@ -1,53 +1,53 @@
-[![NPM](https://nodei.co/npm/turtlecoin-rpc.png?downloads=true&stars=true)](https://nodei.co/npm/turtlecoin-rpc/)
+[![NPM](https://nodei.co/npm/bloc-rpc.png?downloads=true&stars=true)](https://nodei.co/npm/bloc-rpc/)
 
-[![Build Status](https://travis-ci.org/brandonlehmann/turtlecoin-rpc.png?branch=master)](https://travis-ci.org/brandonlehmann/turtlecoin-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/brandonlehmann/turtlecoin-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/brandonlehmann/turtlecoin-rpc/branch/master)
+[![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/BLOC-rpc/branch/master)
 
-# TurtleCoin RPC API
+# BLOC RPC API
 
-This project is designed to make it very easy to interact with various RPC APIs available within the [TurtleCoin](https://turtlecoin.lol) Project. This entire project uses [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) to make things fast, easy, and safe.
+This project is designed to make it very easy to interact with various RPC APIs available within the [BLOC](https://bloc.money) Project. This entire project uses [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) to make things fast, easy, and safe.
 
 ## Table of Contents
 
 1. [Installation](#installation)
 2. [Intialization](#intialization)
-3. [TurtleCoind RPC API Interface](#turtlecoind-rpc-api-interface)
-4. [TurtleService RPC API Interface](#turtleservice-rpc-api-interface)
+3. [BLOCd RPC API Interface](#blocd-rpc-api-interface)
+4. [BlocService RPC API Interface](#blocservice-rpc-api-interface)
 5. [Client RPC API Interface](#client-rpc-api-interface)
 
 ## Installation
 
 ```bash
-npm install turtlecoin-rpc
+npm install bloc-rpc
 ```
 
 ## Intialization
 
-### TurtleCoind
+### BLOCd
 ```javascript
-const TurtleCoind = require('turtlecoin-rpc').TurtleCoind
+const BLOCd = require('bloc-rpc').BLOCd
 
-const daemon = new TurtleCoind({
-  host: '127.0.0.1', // ip address or hostname of the TurtleCoind host
-  port: 11898, // what port is the RPC server running on
+const daemon = new BLOCd({
+  host: '127.0.0.1', // ip address or hostname of the BLOCd host
+  port: 2086, // what port is the RPC server running on
   timeout: 2000, // request timeout
   ssl: false // whether we need to connect using SSL/TLS
 })
 ```
 
-### TurtleService
+### BlocService
 ```javascript
-const TurtleService = require('turtlecoin-rpc').TurtleService
+const BlocService = require('bloc-rpc').BlocService
 
-const service = new TurtleService({
-  host: '127.0.0.1', // ip address or hostname of the turtle-service host
-  port: 8070, // what port is turtle-service running on
+const service = new BlocService({
+  host: '127.0.0.1', // ip address or hostname of the bloc-service host
+  port: 8070, // what port is bloc-service running on
   timeout: 2000, // request timeout
   ssl: false, // whether we need to connect using SSL/TLS
-  rpcPassword: 'changeme', // must be set to the password used to run turtle-service
+  rpcPassword: 'changeme', // must be set to the password used to run bloc-service
   
   // RPC API default values
   defaultMixin: false, // the default mixin to use for transactions, the default setting is false which means we don't have a default value
-  defaultFee: 0.1, // the default transaction fee for transactions
+  defaultFee: 1, // the default transaction fee for transactions
   defaultBlockCount: 1, // the default number of blocks when blockCount is required
   decimalDivisor: 100, // Currency has many decimal places?
   defaultFirstBlockIndex: 1, // the default first block index we will use when it is required
@@ -58,19 +58,19 @@ const service = new TurtleService({
 
 ### Client
 ```javascript
-const Client = require('turtlecoin-rpc').Client
+const Client = require('bloc-rpc').Client
 
 const client = new Client({
-  host: '127.0.0.1', // ip address or hostname of the TurtleCoind host
-  port: 11898, // what port is the RPC server running on
+  host: '127.0.0.1', // ip address or hostname of the BLOCd host
+  port: 2086, // what port is the RPC server running on
   timeout: 2000, // request timeout
   ssl: false // whether we need to connect using SSL/TLS
 })
 ```
 
-## TurtleCoind RPC API Interface
+## BLOCd RPC API Interface
 
-We expose all of the `TurtleCoind` RPC API commands via the ```TurtleCoind``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
+We expose all of the `BLOCd` RPC API commands via the ```BLOCd``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
 
 Methods noted having options have parameters that may be *optional* or *required* as documented.
 
@@ -177,37 +177,37 @@ daemon.getBlock({
     },
     {
       "amount_out": 2005890,
-      "fee": 110,
+      "fee": 1,
       "hash": "8096a55ccd0d4a736b3176836429905f349c3de53dd4e92d34f4a2db7613dc4b",
       "size": 2288
     },
     {
       "amount_out": 3999900,
-      "fee": 100,
+      "fee": 1,
       "hash": "304a068cbe87cd02b48f80f8831197174b133870d0c118d1fe65d07a33331c4e",
       "size": 2691
     },
     {
       "amount_out": 7862058,
-      "fee": 100,
+      "fee": 1,
       "hash": "29c0d6708e8148eec6e02173b3bab0093768e5f486f553939495a47f883b4445",
       "size": 9638
     },
     {
       "amount_out": 6951392,
-      "fee": 100,
+      "fee": 1,
       "hash": "fe661f11a0ba9838610c147f70813c17755ab608c7b033f6432c0b434671182c",
       "size": 10004
     },
     {
       "amount_out": 6800150,
-      "fee": 100,
+      "fee": 1,
       "hash": "4b0366f79ec341cf60d5ef8c9dd8e65974dacb1be1d30dc0bf11d2d9d8240b46",
       "size": 11493
     },
     {
       "amount_out": 7260417,
-      "fee": 100,
+      "fee": 1,
       "hash": "066b86268b7bb2f780ed76f452d1e6f7213dc6cae273b71fbd4ba378befaed00",
       "size": 12155
     }
@@ -448,7 +448,7 @@ daemon.getBlockHash({
 ```javascript
 daemon.getBlockTemplate({
   reserveSize: 200,
-  walletAddress: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  walletAddress: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((blockTemplate) => {
   // do something
 })
@@ -689,7 +689,7 @@ daemon.feeInfo().then((result) => {
 
 ```javascript
 {
-"address":"TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
+"address":"abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
 "amount": 5000,
 "status": "OK"
 }
@@ -763,15 +763,15 @@ daemon.feeInfo().then((result) => {
 
 ```javascript
 {
-  "address": "TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ",
+  "address": "abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ",
   "amount": 100,
   "status": "OK"
 }
 ```
 
-## TurtleService RPC API Interface
+## BlocService RPC API Interface
 
-We expose all of the `turtle-service` RPC API commands via the ```TurtleService``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
+We expose all of the `bloc-service` RPC API commands via the ```BlocService``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
 
 ***Special Note:*** Any and all amounts/fees will already be in HUMAN readable units. DO NOT DIVIDE THEM AGAIN unless you've specified ```decimalDivisor``` as ```1``` in the options. You have been warned.
 
@@ -823,7 +823,7 @@ service.getFeeInfo().then((result) => {
 
 ```javascript
 {
-  "address": "TRTLuxN6FVALYxeAEKhtWDYNS9Vd9dHVp3QHwjKbo76ggQKgUfVjQp8iPypECCy3MwZVyu89k1fWE2Ji6EKedbrqECHHWouZN6g",
+  "address": "abLocuxN6FVALYxeAEKhtWDYNS9Vd9dHVp3QHwjKbo76ggQKgUfVjQp8iPypECCy3MwZVyu89k1fWE2Ji6EKedbrqECHHWouZN6g",
   "amount": 5000
 }
 ```
@@ -858,7 +858,7 @@ service.getViewKey().then((result) => {
 
 ```javascript
 service.getSpendKeys({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -885,7 +885,7 @@ service.getSpendKeys({
 
 ```javascript
 service.getMnemonicSeed({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -932,8 +932,8 @@ service.getAddresses().then((result) => {
 
 ```javascript
 [
-  "TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-  "TRTLv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
+  "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
+  "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
 ]
 ```
 
@@ -963,7 +963,7 @@ service.createAddress({
 
 ```javascript
 {
-  "address": "TRTLv3rnGMvAdUUPZZxUmm2jSe8j9U4EfXoAzT3NByLTKD4foK6JuH2FYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYidUqc"
+  "address": "abLocv3rnGMvAdUUPZZxUmm2jSe8j9U4EfXoAzT3NByLTKD4foK6JuH2FYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYidUqc"
 }
 ```
 
@@ -979,7 +979,7 @@ service.createAddress({
 
 ```javascript
 service.deleteAddress({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -997,7 +997,7 @@ service.deleteAddress({
 
 ```javascript
 service.getBalance({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -1070,8 +1070,8 @@ service.getBlockHashes({
 ```javascript
 service.getTransactionHashes({
   addresses: [
-    "TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-    "TRTLv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
+    "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
+    "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
   ],
   blockHash: 'f98d6bbe80a81b3aa0aebd004096e2223524f58f347a1f21be122450f244b948',
   blockCount: 1
@@ -1114,8 +1114,8 @@ service.getTransactionHashes({
 ```javascript
 service.getTransactions({
   addresses: [
-    "TRTLux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-    "TRTLv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
+    "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
+    "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
   ],
   firstBlockIndex: 469419,
   blockCount: 1
@@ -1133,13 +1133,13 @@ service.getTransactions({
     "transactionAmount": 10.5,
     "blockIndex": 469419,
     "extra": "014fa15a893c92e040fc97c8bda6d811685a269309b37ad444755099cbed6d8438",
-    "fee": 0.1,
+    "fee": 1,
     "isBase": false,
     "paymentId": "",
     "state": 0,
     "timestamp": 1526876765,
     "transactionHash": "d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751",
-    "address": "TRTLv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
+    "address": "abLocv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
     "amount": 10.5,
     "type": 0,
     "unlockTime": 0,
@@ -1160,7 +1160,7 @@ service.getTransactions({
 
 ```javascript
 service.getUnconfirmedTransactionHashes({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -1205,7 +1205,7 @@ service.getTransaction({
     "amount": 10,
     "blockIndex": 469419,
     "extra": "014fa15a893c92e040fc97c8bda6d811685a269309b37ad444755099cbed6d8438",
-    "fee": 0.1,
+    "fee": 1,
     "isBase": false,
     "paymentId": "",
     "state": 0,
@@ -1213,7 +1213,7 @@ service.getTransaction({
     "transactionHash": "d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751",
     "transfers": [
       {
-        "address": "TRTLv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
+        "address": "abLocv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
         "amount": 10,
         "type": 0
       },
@@ -1244,7 +1244,7 @@ This method creates a transfer object designed to be used with *service.sendTran
 #### Example Code
 
 ```javascript
-var transfer = service.newTransfer('TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
+var transfer = service.newTransfer('abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
 ```
 
 ### service.sendTransaction(options)
@@ -1269,9 +1269,9 @@ var transfer = service.newTransfer('TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K
 ```javascript
 service.sendTransaction({
   transfers: [
-    service.newTransfer('TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
+    service.newTransfer('abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
   ],
-  fee: 0.1,
+  fee: 1,
   mixin: 7,
 }).then((result) => {
   // do something
@@ -1308,9 +1308,9 @@ service.sendTransaction({
 ```javascript
 service.createDelayedTransaction({
   transfers: [
-    service.newTransfer('TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
+    service.newTransfer('abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
   ],
-  fee: 0.1,
+  fee: 1,
   mixin: 7,
 }).then((result) => {
   // do something
@@ -1400,7 +1400,7 @@ service.sendDelayedTransaction({
 ```javascript
 service.sendFusionTransaction({
   mixin: 7,
-  destinationAddress: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  destinationAddress: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
 }).then((result) => {
   // do something
 })
@@ -1429,7 +1429,7 @@ service.sendFusionTransaction({
 service.estimateFusion({
   threshold: 100000000,
   addresses:[
-    'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+    'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
   ]
 }).then((result) => {
   // do something
@@ -1458,7 +1458,7 @@ service.estimateFusion({
 
 ```javascript
 service.createIntegratedAddress({
-  address: 'TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ',
+  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ',
   paymentId: '80ec855eef7df4bce718442cabe086f19dfdd0d03907c7768eddb8eca8c5a667'
 }).then((result) => {
   // do something
@@ -1468,13 +1468,13 @@ service.createIntegratedAddress({
 #### Example Data
 
 ```javascript
-TRTLTyPSXMZB5j2wbztMzRXu2rVCuNVLUb4WKARRZY9ficYWshMDy7p4MXEz24mkyb4KFDVksDj41XTJ4DC3c7P2SfRg3r5q1ve9x7x5tK
+abLocTyPSXMZB5j2wbztMzRXu2rVCuNVLUb4WKARRZY9ficYWshMDy7p4MXEz24mkyb4KFDVksDj41XTJ4DC3c7P2SfRg3r5q1ve9x7x5tK
 
 ```
 
 ## Client RPC API Interface
 
-We expose all of the `TurtleCoind` Client RPC API commands via the ```Client``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
+We expose all of the `BLOCd` Client RPC API commands via the ```Client``` interface. Each of the below methods are [Javascript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). For safety sake, **always** handle your promise catches as we do use them properly.
 
 Methods noted having options have parameters that may be *optional* or *required* as documented.
 
@@ -2798,7 +2798,7 @@ client.getTransactionDetailsByHashes({
         "publicKey": "998e47b2e6ae96d44e3e8e06ca1c94408a724c09390cb738b44160dbdbca13b3",
         "raw": ""
       },
-      "fee": 80,
+      "fee": 1,
       "hash": "8620c2f19b00182beb407023848305889baaa5202f3664c9efa70a843bf26c7b",
       "inBlockchain": true,
       "inputs": [
@@ -2866,7 +2866,7 @@ client.getTransactionDetailsByHashes({
         "publicKey": "6580ed699dd3cd96abd534203a44af8a185396e381d4b24320fd3c6ffb574a77",
         "raw": ""
       },
-      "fee": 100,
+      "fee": 1,
       "hash": "687c487be84153ead8e70e3873d30f334316fc7d9ed052dd0575faad57d135dd",
       "inBlockchain": true,
       "inputs": [
