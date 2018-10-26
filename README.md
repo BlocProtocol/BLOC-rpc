@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/bloc-rpc/branch/master)
+=======
+[![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/BLOC-rpc/branch/master)
+>>>>>>> f9aa83f3586d9f21dc8f2593983e8b15fcdd6d2c
 
 # BLOC RPC API
 
