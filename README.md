@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/bloc-rpc.png?downloads=true&stars=true)](https://nodei.co/npm/bloc-rpc/)
+
 [![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/BLOC-rpc/branch/master)
 
 # BLOC RPC API
