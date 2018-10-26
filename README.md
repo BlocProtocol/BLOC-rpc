@@ -2976,7 +2976,7 @@ client.getTransactionHashesByPaymentId({
 ## License
 
 ```
-Copyright (C) 2018 Brandon Lehmann, The TurtleCoin Developers
+Copyright (C) 2018 Brandon Lehmann, The TurtleCoin Developers, The BLOC Developers
 
 Please see the included LICENSE file for more information.
 ```
