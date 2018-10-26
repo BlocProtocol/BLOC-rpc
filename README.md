@@ -1,6 +1,4 @@
-[![NPM](https://nodei.co/npm/bloc-rpc.png?downloads=true&stars=true)](https://nodei.co/npm/bloc-rpc/)
-
-[![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/BLOC-rpc/branch/master)
+[![Build Status](https://travis-ci.org/furiousteam/BLOC-rpc.png?branch=master)](https://travis-ci.org/furiousteam/BLOC-rpc) [![Build Status](https://ci.appveyor.com/api/projects/status/github/furiousteam/BLOC-rpc?branch=master&svg=true)](https://ci.appveyor.com/project/furiousteam/bloc-rpc/branch/master)
 
 # BLOC RPC API
 
@@ -43,16 +41,16 @@ const service = new BlocService({
   port: 8070, // what port is bloc-service running on
   timeout: 2000, // request timeout
   ssl: false, // whether we need to connect using SSL/TLS
-  rpcPassword: 'changeme', // must be set to the password used to run bloc-service
+  rpcPassword: 'inblocwetrust', // must be set to the password used to run bloc-service
   
   // RPC API default values
   defaultMixin: false, // the default mixin to use for transactions, the default setting is false which means we don't have a default value
   defaultFee: 1, // the default transaction fee for transactions
   defaultBlockCount: 1, // the default number of blocks when blockCount is required
-  decimalDivisor: 100, // Currency has many decimal places?
+  decimalDivisor: 1000, // Currency has many decimal places?
   defaultFirstBlockIndex: 1, // the default first block index we will use when it is required
   defaultUnlockTime: 0, // the default unlockTime for transactions
-  defaultFusionThreshold: 10000000, // the default fusionThreshold for fusion transactions
+  defaultFusionThreshold: 1, // the default fusionThreshold for fusion transactions
 })
 ```
 
@@ -1427,7 +1425,7 @@ service.sendFusionTransaction({
 
 ```javascript
 service.estimateFusion({
-  threshold: 100000000,
+  threshold: 1,
   addresses:[
     'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
   ]
