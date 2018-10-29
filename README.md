@@ -256,7 +256,7 @@ Gets information on the single transaction.
 
 Argument        | Mandatory     | Description                   | Format
 --------------- | ------------- | ------------------------------| ------
-hash            | Yes           | Transaction hash              | string
+hash            | Yes           | Transaction hash              | integer
 
 
 #### Example Code
@@ -423,10 +423,10 @@ Returns blocktemplate with an empty "hole" for nonce.
 
 #### Input
 
-Argument | Mandatory | Description | Format
--------- | -------- | ------------- | -----
-reserve_size | Yes | Block reserve size to be specified | int
-wallet_address | Yes | Valid BLOC wallet address | String
+Argument    | Mandatory | Description   | Format
+----------- | --------- | ------------- | -----
+reserveSize | Yes       | Block reserve size to be specified | integer
+walletAddress | Yes     | Valid BLOC wallet address | string
 
 #### Example Code
 
@@ -468,9 +468,9 @@ Submits mined block.
 
 #### Method Parameters
 
-Argument | Mandatory | Description | Format
--------- | -------- | ------------- | -----
-block_blob | Yes | Block bloc data from minerk | string
+Argument  | Mandatory | Description   | Format
+--------- | --------  | ------------- | -----
+blockBlob | Yes       | Block bloc data from minerk | string
 
 #### Example Code
 
@@ -622,7 +622,7 @@ Returns block header by given block height
 
 Argument | Mandatory | Description | Format
 ------ | ----------- | ----------- | -----
-height | Yes   | the block height to find | int
+height | Yes         | the block height to find | string
 
 #### Example Code
 
@@ -839,11 +839,11 @@ daemon.feeInfo().then((result) => {
 
 #### Output
 
-Argument         | Description          | Format
----------------- | -------------------- | ------
-address            | address to which the fee is paid | string
-amount    | fee amount | int
-status           | Status of fees for the node | string
+Argument         | Description                      | Format
+---------------- | -------------------------------- | ------
+address          | address to which the fee is paid | string
+amount           | fee amount                       | int
+status           | Status of fees for the node      | string
 
 
 ### daemon.getTransactions()
@@ -876,11 +876,11 @@ daemon.getTransactions({
 
 #### Ouput
 
-Argument         | Description          | Format
----------------- | -------------------- | ------
-missed_tx            | array of missed transactions | array
-status           | Status of request | string
-txs_as_hex   | array of hex values of missed transactions | array
+Argument         | Description                  | Format
+---------------- | ---------------------------- | ------
+missed_tx        | array of missed transactions | array
+status           | Status of request            | string
+txs_as_hex       | array of hex values of missed transactions | array
 
 
 ### daemon.getPeers()
