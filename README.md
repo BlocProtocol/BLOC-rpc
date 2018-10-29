@@ -78,17 +78,17 @@ Methods noted having options have parameters that may be *optional* or *required
 
 Returns information on the last 30 blocks before *height* (inclusive).
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|height|Yes|The height of the blockchain to start at|integer|
+Argument        | Mandatory     | Description           | Format
+--------------- | ------------- | --------------------- | ------
+height          | Yes           | height of the blockchain to be included in the result. | integer
 
 #### Example Code
 
 ```javascript
 daemon.getBlocks({
-  height: 500000
+  height: 104326
 }).then((blocks) => {
   // do something
 })
@@ -97,49 +97,67 @@ daemon.getBlocks({
 #### Example Data
 
 ```javascript
-[
-  {
-    "cumul_size": 22041,
-    "difficulty": 285124963,
-    "hash": "62f0058453292af5e1aa070f8526f7642ab6974c6af2c17088c21b31679c813d",
-    "height": 500000,
-    "timestamp": 1527834137,
-    "tx_count": 4
-  },
-  {
-    "cumul_size": 384,
-    "difficulty": 258237161,
-    "hash": "74a45602da61b8b8ff565b1c81c854416046a23ca53f4416684ffaa60bc50796",
-    "height": 499999,
-    "timestamp": 1527834031,
-    "tx_count": 1
-  },
-  {
-    "cumul_size": 418,
-    "difficulty": 256087255,
-    "hash": "ed628ff13eacd5b99c5d7bcb3aeb29ef8fc61dbb21d48b65e0cdaf5ab21211c1",
-    "height": 499998,
-    "timestamp": 1527834020,
-    "tx_count": 1
-  }
-]
+[ { cumul_size: 1742,
+    difficulty: 47134552,
+    hash:
+     'a4ee6bc0613b131ab9642c4090542bf906284a614e5a6041915127536d6bcbc0',
+    height: 104326,
+    timestamp: 1540806279,
+    tx_count: 2 },
+  { cumul_size: 355,
+    difficulty: 47531254,
+    hash:
+     '9bc5b82452047a3475dc90796900ee6c78a7b971f0d36409328630787dbd4664',
+    height: 104325,
+    timestamp: 1540806195,
+    tx_count: 1 },
+  { cumul_size: 346,
+    difficulty: 46081092,
+    hash:
+     '6986fc750946f7e20191d2a231853e7091de5dd34c4d7afa01ab686a54fe1ac0',
+    height: 104324,
+    timestamp: 1540806047,
+    tx_count: 1 },
+  { cumul_size: 16569,
+    difficulty: 45398503,
+    hash:
+     '547879344dd593c3ad426f23f441b87a9fe939a797426656e6e3f2230da7507c',
+    height: 104296,
+    timestamp: 1540803334,
+    tx_count: 1 } ]
+
 ```
+
+#### Output
+
+Argument |              | Description                           | Format
+-------- | ------------ | -----------                           | ------
+status   |              | status of the request                 | string
+blocks   | **Array of** |                                       |
+         | cumul_size   | size of the block                     | int
+         | difficulty   | difficulty of the block               | int
+         | hash         | hash of the block                     | string
+         | height       | height of the block                   | int
+         | timestamp    | the time at which the block is occured on the chain since Unix epoch | int
+         | tx_count     | number of transactions in the block   | int
+
 
 ### daemon.getBlock(options)
 
 Returns information on a single block
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|hash|Yes|Block hash of the block you wish to retrieve|string|
+Argument        | Mandatory     | Description                         | Format
+--------------- | ------------- | ----------------------------------- | ------
+hash            | Yes           | Block hash you wish to retreive     | string
+
 
 #### Example Code
 
 ```javascript
 daemon.getBlock({
-  hash: 'f11580d74134ac34673c74f8da458080aacbe1eccea05b197e9d10bde05139f5'
+  hash: 'd8a24f43719a1088c9311dbbef17cef5141fa02bf29986a38dae59e20297c768'
 }).then((block) => {
   // do something
 })
@@ -148,89 +166,104 @@ daemon.getBlock({
 #### Sample Data
 
 ```javascript
-{
-  "alreadyGeneratedCoins": "1484230931125",
-  "alreadyGeneratedTransactions": 974921,
-  "baseReward": 2935998,
-  "blockSize": 48846,
-  "depth": 0,
-  "difficulty": 358164537,
-  "effectiveSizeMedian": 100000,
-  "hash": "f11580d74134ac34673c74f8da458080aacbe1eccea05b197e9d10bde05139f5",
-  "height": 501854,
-  "major_version": 4,
-  "minor_version": 0,
-  "nonce": 214748383,
-  "orphan_status": false,
-  "penalty": 0,
-  "prev_hash": "674046ea53a8673c630bd34655c4723199e69fdcfd518503f4c714e16a7121b5",
-  "reward": 2936608,
-  "sizeMedian": 231,
-  "timestamp": 1527891820,
-  "totalFeeAmount": 610,
-  "transactions": [
-    {
-      "amount_out": 2936608,
-      "fee": 0,
-      "hash": "61b29d7a3fe931928388f14cffb5e705a68db219e1df6b4e15aee39d1c2a16e8",
-      "size": 266
-    },
-    {
-      "amount_out": 2005890,
-      "fee": 1,
-      "hash": "8096a55ccd0d4a736b3176836429905f349c3de53dd4e92d34f4a2db7613dc4b",
-      "size": 2288
-    },
-    {
-      "amount_out": 3999900,
-      "fee": 1,
-      "hash": "304a068cbe87cd02b48f80f8831197174b133870d0c118d1fe65d07a33331c4e",
-      "size": 2691
-    },
-    {
-      "amount_out": 7862058,
-      "fee": 1,
-      "hash": "29c0d6708e8148eec6e02173b3bab0093768e5f486f553939495a47f883b4445",
-      "size": 9638
-    },
-    {
-      "amount_out": 6951392,
-      "fee": 1,
-      "hash": "fe661f11a0ba9838610c147f70813c17755ab608c7b033f6432c0b434671182c",
-      "size": 10004
-    },
-    {
-      "amount_out": 6800150,
-      "fee": 1,
-      "hash": "4b0366f79ec341cf60d5ef8c9dd8e65974dacb1be1d30dc0bf11d2d9d8240b46",
-      "size": 11493
-    },
-    {
-      "amount_out": 7260417,
-      "fee": 1,
-      "hash": "066b86268b7bb2f780ed76f452d1e6f7213dc6cae273b71fbd4ba378befaed00",
-      "size": 12155
-    }
-  ],
-  "transactionsCumulativeSize": 48535
-}
+{ alreadyGeneratedCoins: '71833702006',
+  alreadyGeneratedTransactions: 339705,
+  baseReward: 204165,
+  blockSize: 3079,
+  depth: 30,
+  difficulty: 43080047,
+  effectiveSizeMedian: 1000000,
+  hash:
+   'd8a24f43719a1088c9311dbbef17cef5141fa02bf29986a38dae59e20297c768',
+  height: 104304,
+  major_version: 4,
+  minor_version: 0,
+  nonce: 83887409,
+  orphan_status: false,
+  penalty: 0,
+  prev_hash:
+   '6dc529cbafdd441a2ae31bea908902d3eb833499f681265bbe2ebf800daed120',
+  reward: 204168,
+  sizeMedian: 236,
+  timestamp: 1540803975,
+  totalFeeAmount: 3,
+  transactions:
+   [ { amount_out: 204168,
+       fee: 0,
+       hash:
+        '3db2b990e500fe07d44f7599483120ba989fad2a9fc5574178f7d399c185c4d9',
+       size: 236 },
+     { amount_out: 100000,
+       fee: 1,
+       hash:
+        'c6bbf4754a31dc1821a6bce7fc0e9bdf2fe164b86c156eb24145ae8b7538a266',
+       size: 452 },
+     { amount_out: 60099,
+       fee: 1,
+       hash:
+        '0d009323d3bc7d223d56dda487b174dc9a6e25c31861288a58ef1dd77e9e8b31',
+       size: 487 },
+     { amount_out: 338373,
+       fee: 1,
+       hash:
+        'd2b4d1d314b0a3627b0853b9083a42c141aaae8998718a28605d981c912a1a9d',
+       size: 1689 } ],
+  transactionsCumulativeSize: 2864 }
 ```
+
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+alreadyGeneratedCoins | total number of coins generated in the network upto that block | string
+alreadyGeneratedTransactions | total number of transactions present in the network upto that block | int
+baseReward | calculated reward | int
+block_size | size of the block | int
+depth | height away from the known top block | int
+difficulty | difficulty of the requested block | int
+effectiveSizeMedian | fixed constant for max size of block | int
+hash | hash of the requested block | string
+height | height of the requested block | int
+major_version | - | int
+minor_version | - | int
+nonce | - | int
+orphan_status | whether the requested block was an orphan or not | bool
+penalty | penalty in block reward determined for deviation | float
+prev_hash | hash of the previous block | string
+reward | total reward of the block after removing penalty | str
+sizeMedian | calculated median size from last 100 blocks | int
+timestamp | the time at which the block is occured on chain since Unix epoch | int
+totalFeeAmount | total fees for the transactions in the block | int
+transactions | Array of transactions in the block | array
+transactionsCumulativeSize | total sum of size of all transactions in the block | int
+status | status of the request | string
+
+#### Transaction Attributes
+
+Argument | Description | Format
+------- | ---------- | --------
+amount_out | output amount of the transaction | int
+fee | fees for the transaction | int
+hash | hash of the transaction | string
+size | size of the transaction | int
+
 
 ### daemon.getTransaction(options)
 
 Gets information on the single transaction.
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|hash|Yes|The transaction hash|integer|
+Argument        | Mandatory     | Description                   | Format
+--------------- | ------------- | ------------------------------| ------
+hash            | Yes           | Transaction hash              | string
+
 
 #### Example Code
 
 ```javascript
 daemon.getTransaction({
-  hash: '702ad5bd04b9eff14b080d508f69a320da1909e989d6c163c18f80ae7a5ab832'
+  hash: '4c4d2ddb0277ce958ab41228ca24fa609c47d658d2955005d822ae697fba999d'
 }).then((transaction) => {
   // do something
 })
@@ -239,99 +272,49 @@ daemon.getTransaction({
 #### Sample Data
 
 ```javascript
-{
-  "block": {
-    "cumul_size": 22041,
-    "difficulty": 103205633,
-    "hash": "62f0058453292af5e1aa070f8526f7642ab6974c6af2c17088c21b31679c813d",
-    "height": 500000,
-    "timestamp": 1527834137,
-    "tx_count": 4
-  },
-  "status": "OK",
-  "tx": {
-    "extra": "019e430ecdd501714900c71cb45fd49b4fa77ebd4a68d967cc2419ccd4e72378e3020800000000956710b6",
-    "unlock_time": 500040,
-    "version": 1,
-    "vin": [
-      {
-        "type": "ff",
-        "value": {
-          "height": 500000
-        }
-      }
-    ],
-    "vout": [
-      {
-        "amount": 80,
-        "target": {
-          "data": {
-            "key": "5ce69a87940df7ae8443261ff610861d2e4207a7556ef1aa35878c0a5e7e382d"
-          },
-          "type": "02"
-        }
-      },
-      {
-        "amount": 200,
-        "target": {
-          "data": {
-            "key": "7c7f316befaac16ba3782a2ce489e7c0f16c2b733ac0eaa0a72a12ee637822e9"
-          },
-          "type": "02"
-        }
-      },
-      {
-        "amount": 6000,
-        "target": {
-          "data": {
-            "key": "defcb7eb6537bf0a63368ed464df10197e67d7ea8f080e885911cf9ea71abb62"
-          },
-          "type": "02"
-        }
-      },
-      {
-        "amount": 30000,
-        "target": {
-          "data": {
-            "key": "9693e864dba53f308d0b59623c608b6fe16bbdc7cdc75be94f78582d547b46a4"
-          },
-          "type": "02"
-        }
-      },
-      {
-        "amount": 900000,
-        "target": {
-          "data": {
-            "key": "b739e9fbaa3ee976a9ed8ad93a2731ee191c384cf136929e737786573fcd3e96"
-          },
-          "type": "02"
-        }
-      },
-      {
-        "amount": 2000000,
-        "target": {
-          "data": {
-            "key": "5621667d44e7ffb87e5010a5984c188f58a799efb01569e8e42fa2415bb7d14a"
-          },
-          "type": "02"
-        }
-      }
-    ]
-  },
-  "txDetails": {
-    "amount_out": 2936280,
-    "fee": 0,
-    "hash": "702ad5bd04b9eff14b080d508f69a320da1909e989d6c163c18f80ae7a5ab832",
-    "mixin": 0,
-    "paymentId": "",
-    "size": 266
-  }
-}
+{ block:
+   { cumul_size: 2277,
+     difficulty: 39533728,
+     hash:
+      'c11c3f9f8e6376585cf598906541051f07ed49a877a0884e2c8e757cac9af156',
+     height: 104343,
+     timestamp: 1540808154,
+     tx_count: 3 },
+  status: 'OK',
+  tx:
+   { '':
+      '967bb63721cb2f6e2c15318674bd2cc2aa8ee1eb7d922b0bd76febf1ea85240186b79ace51c646a20f97495509510ae70620129f055dd8ea3b07116c8e07da0a',
+     extra:
+      '013c12608a04af937e0197972a22e4700f8f572b44af9a8b806ee410a11fcdbde0',
+     unlock_time: 0,
+     version: 1,
+     vin: [ [Object] ],
+     vout: [ [Object], [Object], [Object], [Object], [Object] ] },
+  txDetails:
+   { amount_out: 9999,
+     fee: 1,
+     hash:
+      '4c4d2ddb0277ce958ab41228ca24fa609c47d658d2955005d822ae697fba999d',
+     mixin: 4,
+     paymentId: '',
+     size: 515 } }
+
 ```
+
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+block | details of the block in which transaction is present | json object
+status | status of the request | string
+tx | sub-transactions in the transaction | json object
+txDetails | details of the transaction | json object
+
 
 ### daemon.getTransactionPool()
 
-Gets the list of transaction hashs in the mempool.
+* Gets the list of transaction hashs in the mempool
+* No input
 
 #### Example Code
 
@@ -344,55 +327,40 @@ daemon.getTransactionPool().then((transactions) => {
 #### Sample Data
 
 ```javascript
-[
-  {
-    "amount_out": 1660000,
-    "fee": 0,
-    "hash": "721ae50994d5446d5683ca79d6fa97dce321a39e88e1df70ae433dc67573841b",
-    "size": 13046
-  },
-  {
-    "amount_out": 325000,
-    "fee": 0,
-    "hash": "fc88004d9cd012c0341506f13003da015efec940cffca0baeff0a381c7846203",
-    "size": 28038
-  },
-  {
-    "amount_out": 4040000,
-    "fee": 0,
-    "hash": "de63292050c73db4bb74637910ceab2aef6b9a0b611d0d93e7a757f9c53f975a",
-    "size": 28058
-  },
-  {
-    "amount_out": 10200000,
-    "fee": 0,
-    "hash": "edcd17184bd0c953be009da6b555e90a7cd5fc596f5f560332382995be7b55a7",
-    "size": 28091
-  },
-  {
-    "amount_out": 3380000,
-    "fee": 0,
-    "hash": "e1846775508a750a2f027db46972114e86866d27d304c9178867ae4616b3723c",
-    "size": 28092
-  },
-  {
-    "amount_out": 3960000,
-    "fee": 0,
-    "hash": "015646a75a5279050b5f02df6d5ff9814860fabc8b093818995a4fb6a33e45d8",
-    "size": 28096
-  },
-  {
-    "amount_out": 3860000,
-    "fee": 0,
-    "hash": "5e2f8bcc8c6c9a74e8ce33a66213711b418633eceeefce50042aecb8544676ba",
-    "size": 28097
-  }
-]
+[ { amount_out: 234320,
+    fee: 1,
+    hash:
+     'f45737c88670722e7d71fbba46d44abddf5e9d35115b0df22a071beb82db294f',
+    size: 934 },
+  { amount_out: 59000,
+    fee: 0,
+    hash:
+     '4d960625ccf1d29e53ec875b80914ce3a51c3db5192f98c4b80becd3b580a6dc',
+    size: 1448 } ]
+
 ```
+
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+status | status of the request | string
+transactions | array of transactions in mempool | array
+
+Transactions attributes:
+
+Argument | Description | Format
+------- | ---------- | --------
+amount_out | output amount of the transaction | int
+fee | fees for the transaction | int
+hash | hash of the transaction | string
+size | size of the transaction | int
+
 
 ### daemon.getBlockCount()
 
-Gets the current block count
+* Gets the current block count
+* No input
 
 #### Example Code
 
@@ -405,24 +373,32 @@ daemon.getBlockCount().then((blockCount) => {
 #### Sample Data
 
 ```javascript
-502322
+104357
 ```
+
+#### Output
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+count            | Current chain height | integer
+status           | Status of request    | string
+
 
 ### daemon.getBlockHash(options)
 
-Gets a block hash by height.
+Returns block hash for a given height off by one.
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|height|Yes|The height of the block|integer|
+Argument        | Mandatory     | Description           | Format
+--------------- | ------------- | --------------------- | ------
+height          | Yes           | The height of the block whose previous hash is to be retrieved. | integer
 
 #### Example Code
 
 ```javascript
 daemon.getBlockHash({
-  height: 500000
+  height: 104357
 }).then((blockHash) => {
   // do something
 })
@@ -431,17 +407,26 @@ daemon.getBlockHash({
 #### Sample Data
 
 ```text
-74a45602da61b8b8ff565b1c81c854416046a23ca53f4416684ffaa60bc50796
+ad4e1d529f89ed4d272cd0f3d49c863ddc4107891a9e4f5ee7a3e7ef0dab2b9b
 ```
+
+#### Output
+
+Argument         | Description            | Format
+---------------- | ---------------------- | ------
+result           | Hash of previous block | int
+
 
 ### daemon.getBlockTemplate(options)
 
-#### Method Parameters
+Returns blocktemplate with an empty "hole" for nonce.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|reserveSize|Yes|Block reserve size|integer|
-|walletAddress|Yes|Public Wallet Address|string|
+#### Input
+
+Argument | Mandatory | Description | Format
+-------- | -------- | ------------- | -----
+reserve_size | Yes | Block reserve size to be specified | int
+wallet_address | Yes | Valid BLOC wallet address | String
 
 #### Example Code
 
@@ -457,22 +442,35 @@ daemon.getBlockTemplate({
 #### Sample Data
 
 ```javascript
-{
-  "blocktemplate_blob": "0400...0581",
-  "difficulty": 194635827,
-  "height": 502335,
-  "reserved_offset": 412,
-  "status": "OK"
-}
+{ blocktemplate_blob:
+   '0400293f62342d2b17d9bd9..........a64',
+  difficulty: 51474062,
+  height: 104369,
+  reserved_offset: 305,
+  status: 'OK' }
+
 ```
+
+#### Output
+
+Argument | Description | Format
+-------- | ---------- | ------
+blocktempate_blob | Blocktemplate with empty "hole" for nonce | string
+difficulty | Difficulty of the network | int
+height | Chain height of the network | int
+reserved_offset | Offset reserved | int
+status | Status of the network | string
+
 
 ### daemon.submitBlock(options)
 
+Submits mined block.
+
 #### Method Parameters
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|blockBlob|Yes|Block blob data from miner|string|
+Argument | Mandatory | Description | Format
+-------- | -------- | ------------- | -----
+block_blob | Yes | Block bloc data from minerk | string
 
 #### Example Code
 
@@ -492,7 +490,16 @@ daemon.submitBlock({
 }
 ```
 
+#### Output
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+status           | Status of request | string
+
+
 ### daemon.getLastBlockHeader()
+
+No input
 
 #### Example Code
 
@@ -525,19 +532,41 @@ daemon.getLastBlockHeader().then((result) => {
 }
 ```
 
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+block_size | size of the block | int
+depth | height away from the known top block | int
+difficulty | difficulty of the last block | int
+hash | hash of the last block | string
+height | height of the last block | int
+major_version | - | int
+minor_version | - | int
+nonce | - | int
+num_txs | Number of transactions in the block | int
+orphan_status | whether the last block was an orphan or not | bool
+prev_hash | hash of the previous block | string
+reward | reward of the block | str
+timestamp | the time at which the block is occured on chain since Unix epoch | int
+status | status of the request | string
+
+
 ### daemon.getBlockHeaderByHash(options)
 
-#### Method Parameters
+Returns block header by given block hash
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|hash|Yes|The block hash to find|string|
+#### Input
+
+Argument | Mandatory | Description | Format
+-------- | ---------- | ----------- | -----
+hash | Yes   | The block hash to find | string
 
 #### Example Code
 
 ```javascript
 daemon.getBlockHeaderByHash({
-  hash: '7d6db7b77232d41c19d898e81c85ecf08c4e8dfa3434f975a319f6261a695739'
+  hash: '9840215c7c13292abb7e8976a747777ea13be458ae49a88faded1d4090cfe90c'
 }).then((result) => {
   // do something
 })
@@ -546,39 +575,60 @@ daemon.getBlockHeaderByHash({
 #### Sample Data
 
 ```javascript
-{
-  "block_header": {
-    "block_size": 419,
-    "depth": 2,
-    "difficulty": 200671816,
-    "hash": "7d6db7b77232d41c19d898e81c85ecf08c4e8dfa3434f975a319f6261a695739",
-    "height": 502345,
-    "major_version": 4,
-    "minor_version": 0,
-    "nonce": 130876,
-    "num_txes": 1,
-    "orphan_status": false,
-    "prev_hash": "5af657331edff98791720c23aacf72e8b6247ddba2a5c42c93984a46946abd14",
-    "reward": 2935955,
-    "timestamp": 1527907348
-  },
-  "status": "OK"
-}
+
+{ block_size: 2911,
+  depth: 6,
+  difficulty: 51474062,
+  hash:
+   '9840215c7c13292abb7e8976a747777ea13be458ae49a88faded1d4090cfe90c',
+  height: 104369,
+  major_version: 4,
+  minor_version: 0,
+  nonce: 1534084014,
+  num_txes: 2,
+  orphan_status: false,
+  prev_hash:
+   '293f62342d2b17d9bd9ab9450e74998600b2c401b42b3e94b689c495c4c49f64',
+  reward: 204160,
+  timestamp: 1540811301 }
+
 ```
+
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+block_size | size of the block | int
+depth | height away from the known top block | int
+difficulty | difficulty of the requested block | int
+hash | hash of the requested block | string
+height | height of the requested block | int
+major_version | - | int
+minor_version | - | int
+nonce | - | int
+num_txs | Number of transactions in the block | int
+orphan_status | whether the requested block was an orphan or not | bool
+prev_hash | hash of the previous block | string
+reward | reward of the block | str
+timestamp | the time at which the block is occured on chain since Unix epoch | int
+status | status of the request | string
+
 
 ### daemon.getBlockHeaderByHeight(options)
 
-#### Method Parameters
+Returns block header by given block height
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|height|Yes|The block height to find|string|
+#### Input
+
+Argument | Mandatory | Description | Format
+------ | ----------- | ----------- | -----
+height | Yes   | the block height to find | int
 
 #### Example Code
 
 ```javascript
 daemon.getBlockHeaderByHeight({
-  height: 502345
+  height: 100000
 }).then((result) => {
   // do something
 })
@@ -587,27 +637,64 @@ daemon.getBlockHeaderByHeight({
 #### Sample Data
 
 ```javascript
-{
-  "block_header": {
-    "block_size": 419,
-    "depth": 2,
-    "difficulty": 200671816,
-    "hash": "7d6db7b77232d41c19d898e81c85ecf08c4e8dfa3434f975a319f6261a695739",
-    "height": 502345,
-    "major_version": 4,
-    "minor_version": 0,
-    "nonce": 130876,
-    "num_txes": 1,
-    "orphan_status": false,
-    "prev_hash": "5af657331edff98791720c23aacf72e8b6247ddba2a5c42c93984a46946abd14",
-    "reward": 2935955,
-    "timestamp": 1527907348
-  },
-  "status": "OK"
-}
+
+{ block_size: 2911,
+  depth: 6,
+  difficulty: 51474062,
+  hash:
+   '9840215c7c13292abb7e8976a747777ea13be458ae49a88faded1d4090cfe90c',
+  height: 104369,
+  major_version: 4,
+  minor_version: 0,
+  nonce: 1534084014,
+  num_txes: 2,
+  orphan_status: false,
+  prev_hash:
+   '293f62342d2b17d9bd9ab9450e74998600b2c401b42b3e94b689c495c4c49f64',
+  reward: 204160,
+  timestamp: 1540811301 }
+bloc@ubuntu:~/DEV/TEST$ node daemon.getBlockHeaderByHeight
+{ block_size: 3045,
+  depth: 4377,
+  difficulty: 36580703,
+  hash:
+   'e026316d0b95436a7d3d36247fc8adb5fcb342015eccc239b346a7e2fd64c262',
+  height: 100000,
+  major_version: 4,
+  minor_version: 0,
+  nonce: 12925874,
+  num_txes: 2,
+  orphan_status: false,
+  prev_hash:
+   '9d982868dcec3c1c2913fbb96b40c9b872edd79a137d0f8097d252f1a7dcf50a',
+  reward: 205585,
+  timestamp: 1540279968 }
 ```
 
+#### Output
+
+Argument | Description | Format
+------- | ---------- | --------
+block_size | size of the block | int
+depth | height away from the known top block | int
+difficulty | difficulty of the requested block | int
+hash | hash of the requested block | string
+height | height of the requested block | int
+major_version | - | int
+minor_version | - | int
+nonce | - | int
+num_txs | Number of transactions in the block | int
+orphan_status | whether the requested block was an orphan or not | bool
+prev_hash | hash of the previous block | string
+reward | reward of the block | str
+timestamp | the time at which the block is occured on chain since Unix epoch | int
+status | status of the request | string
+
+
 ### daemon.getCurrencyId()
+
+* Returns unique currency identifier.
+* No input
 
 #### Example Code
 
@@ -620,10 +707,20 @@ daemon.getCurrencyId().then((result) => {
 #### Sample Data
 
 ```text
-7fb97df81221dd1366051b2d0bc7f49c66c22ac4431d879c895b06d66ef66f4c
+acd5682403287ad25d94769adb80fbcd45de591ecfd5c86d5176bb9a10ff5baa
 ```
 
+#### Output
+
+Argument | Description | Format
+-------- | ----------- | ------
+currency_id_blob | unique currency identifier | string
+
+
 ### daemon.getHeight()
+
+* Return the height of the daemon and the network
+* No input
 
 #### Example Code
 
@@ -636,14 +733,24 @@ daemon.getHeight().then((result) => {
 #### Sample Data
 
 ```javascript
-{
-  "height": 502354,
-  "network_height": 502354,
-  "status": "OK"
-}
+
+{ height: 104378, network_height: 104378, status: 'OK' }
+
 ```
 
+#### Output
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+height            | Current daemon height | int
+network_height    | Current Network height | int
+status           | Status of request | string
+
+
 ### daemon.getInfo()
+
+* Returns information related to the network and daemon connection
+* No input
 
 #### Example Code
 
@@ -656,26 +763,61 @@ daemon.getInfo().then((result) => {
 #### Sample Data
 
 ```javascript
-{
-"alt_blocks_count": 14,
-"difficulty": 289121015,
-"grey_peerlist_size": 4997,
-"hashrate": 9637367,
-"height": 502354,
-"incoming_connections_count": 12,
-"last_known_block_index": 502352,
-"network_height": 502354,
-"outgoing_connections_count": 8,
-"status": "OK",
-"synced": true,
-"tx_count": 473486,
-"tx_pool_size": 1,
-"version": "0.5.0",
-"white_peerlist_size": 1000
-}
+
+{ alt_blocks_count: 0,
+  difficulty: 49448303,
+  grey_peerlist_size: 432,
+  hashrate: 412069,
+  height: 104378,
+  incoming_connections_count: 0,
+  last_known_block_index: 104376,
+  major_version: 4,
+  minor_version: 0,
+  network_height: 104378,
+  outgoing_connections_count: 8,
+  start_time: 1540806518,
+  status: 'OK',
+  supported_height: 40500,
+  synced: true,
+  testnet: false,
+  tx_count: 235763,
+  tx_pool_size: 33,
+  upgrade_heights: [ 1, 50, 100, 40500 ],
+  version: '3.0.0',
+  white_peerlist_size: 45 }
 ```
 
+#### Output
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+alt_blocks_count | - | int
+difficulty    | difficulty of the top block | int
+gray_peerlist_size | - | int
+hashrate | hashrate of the network | int
+height | height of the daemon | int
+incoming_connections_count | number of incoming connections to the daemon | int
+last_known_block_index | - | int
+major_version | - | int
+minor_version | - | int
+network_height | height of the network | int
+outgoing_connections_count | number of outgoing connections from the daemon | int
+start_time | - | int
+status           | Status of request | string
+supported_height | supported fork height | int
+synced | sync status | bool
+testnet | whether the daemon is on testnet or not | bool
+tx_count | transaction count in the network | int
+tx_pool_size | - | int
+upgrade_heights | pre-determined fork heights | array
+version | version of the daemon | string
+white_peerlist_size | - | int
+
+
 ### daemon.feeInfo()
+
+* Returns information about the fee set for the remote node
+* No input
 
 #### Example Code
 
@@ -688,22 +830,34 @@ daemon.feeInfo().then((result) => {
 #### Sample Data
 
 ```javascript
-{
-"address":"abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-"amount": 5000,
-"status": "OK"
-}
+{ address:
+   'abLoc8oL14r8DUdzXBPwN8LPMSBJfS3BaFG96gQPhFWRNBw2g6AHpFoJyuYP7h83cPEcLYxKAgMs9L27S3tBNEHaMkR6JhDsLt5',
+  amount: 5,
+  status: 'OK' }
+
 ```
 
+#### Output
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+address            | address to which the fee is paid | string
+amount    | fee amount | int
+status           | Status of fees for the node | string
+
+
 ### daemon.getTransactions()
+
+* Returns list of missed transactions
+* No input
 
 #### Example Code
 
 ```javascript
 daemon.getTransactions({
   hashes: [
-    '549828e75151982b0e51b27e8f53b26ebc174f0ef78063984c8952b13e2a3564',
-    '549828e75151982b0e51b27e8f53b26ebc174f0ef78063984c8952b13e2a3563'
+    '40e830f0e97d93a33d3c1c5505fdb7baa7526f3e1122d7aadfc9f2124b637445',
+    '8cdabcfdf89e67b2d7eaa861f5674db5f1f2ded1abc179dde568e7ab3d1dded1'
   ]
 }).then((result) => {
   // do something
@@ -713,18 +867,26 @@ daemon.getTransactions({
 #### Sample Data
 
 ```javascript
-{
-  "missed_tx": [
-    "549828e75151982b0e51b27e8f53b26ebc174f0ef78063984c8952b13e2a3563"
-  ],
-  "status": "OK",
-  "txs_as_hex": [
-    "01000a023204e7b6...584248728d0c"
-  ]
-}
+{ missed_tx: [],
+  status: 'OK',
+  txs_as_hex:
+   [ '010003025a01d89f0c...fdc006',
+     '...9166561652b9e02' ] }
 ```
 
+#### Ouput
+
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+missed_tx            | array of missed transactions | array
+status           | Status of request | string
+txs_as_hex   | array of hex values of missed transactions | array
+
+
 ### daemon.getPeers()
+
+* Returns the list of peers connected to the daemon
+* No input
 
 #### Example Code
 
@@ -737,37 +899,25 @@ daemon.getPeers().then((result) => {
 #### Sample Data
 
 ```javascript
-{
-  "peers": [
-    "174.21.179.198:11897",
-    "94.23.49.75:11897",
-    "...",
-    "80.14.183.25:11897",
-    "71.193.1.94:11897"
-  ],
-  "status": "OK"
-}
+{ peers:
+   [ '116.72.193.145:2082',
+     '197.88.72.131:2082',
+     '173.254.207.154:2082',
+     '85.222.5.143:2082',
+     '178.128.20.108:2082',
+     '139.59.73.98:2082',
+     '193.33.100.27:2082' ],
+  status: 'OK' }
+
 ```
 
-### daemon.feeInfo()
+#### Output
 
-#### Example Code
+Argument         | Description          | Format
+---------------- | -------------------- | ------
+peers           | array of peers (peer_ip:peer_port) | array
+status           | Status of request | string
 
-```javascript
-daemon.feeInfo().then((result) => {
-  // do something
-})
-```
-
-#### Sample Data
-
-```javascript
-{
-  "address": "abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ",
-  "amount": 100,
-  "status": "OK"
-}
-```
 
 ## BlocService RPC API Interface
 
@@ -781,11 +931,15 @@ Methods noted having options have parameters that may be *optional* or *required
 
 ### service.reset(options)
 
-#### Method Parameters
+If the viewSecretKey argument is not provided, the reset() method resets the wallet and re-syncs it. If the viewSecretKey argument is provided, the reset() method substitutes the existing wallet with a new one with the specified key.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|viewSecretKey|No|The secret key to reset|string|
+#### Input
+
+Argument         | Mandatory   | Description      | Format
+---------------- | ----------- | ---------------- | ------
+viewSecretKey    | No          | The secret Private view key to reset | string
+newAddress       | No          | Is this a new address being created? If so, blocks before the creation timestamp will not be scanned. Only one of newAddress and scanHeight can be specified, as if a new address is being created, there is no need to scan from a certain height. | bool
+scanHeight       | No          | The height to begin scanning for transactions at. This can greatly speed up wallet syncing time. | int
 
 #### Example Code
 
@@ -796,8 +950,21 @@ service.reset({
   // do something
 })
 ```
+#### Output
+
+No output in case of success.
+
+<aside class="notice">
+  <div>If the <code>viewSecretKey</code> argument is not provided, the <code>reset()</code> method resets the wallet and
+  re-syncs it. If the <code>viewSecretKey</code> argument is provided, the <code>reset()</code> method substitutes the
+  existing wallet with a new one with the specified key.</div>
+</aside>
 
 ### service.save()
+
+* ```save()``` method allows you to save your wallet by request.
+* No input.
+* No output in case of success.
 
 #### Example Code
 
@@ -809,7 +976,8 @@ service.save().then(() => {
 
 ### service.getFeeInfo()
 
-This method returns the fee information that the service picks up via the connected daemon.
+* ```getFeeInfo()``` method retrieves the fee and address (if any) that that BLOCd walletd is connecting to is using. This fee will automatically be added to any transactions sent by sendTransaction() or sendDelayedTransaction(). Note it does not apply to ```sendFusionTransaction()```
+* No input
 
 #### Example Code
 
@@ -818,17 +986,25 @@ service.getFeeInfo().then((result) => {
   // do something
 })
 ```
-
 #### Example Data
 
 ```javascript
-{
-  "address": "abLocuxN6FVALYxeAEKhtWDYNS9Vd9dHVp3QHwjKbo76ggQKgUfVjQp8iPypECCy3MwZVyu89k1fWE2Ji6EKedbrqECHHWouZN6g",
-  "amount": 5000
-}
+{ address:
+   'abLoc8oL14r8DUdzXBPwN8LPMSBJfS3BaFG96gQPhFWRNBw2g6AHpFoJyuYP7h83cPEcLYxKAgMs9L27S3tBNEHaMkR6JhDsLt5',
+  amount: 5 }
 ```
+#### Output
+
+Argument              | Description                         | Format
+--------------------- | ----------------------------------- | ------
+address               | The address of the node owner 		| string
+amount                | The fee that will be sent to the node owners address with each transaction | int
+
 
 ### service.getViewKey()
+
+* ```getViewKey()``` method returns your view key
+* No input
 
 #### Example Code
 
@@ -841,24 +1017,32 @@ service.getViewKey().then((result) => {
 #### Example Data
 
 ```javascript
-{
-  "viewSecretKey": "12345678901234567890"
-}
+{ viewSecretKey:
+   'e0b250f7d56f9b7a4ac9b57e9c716dea731b59a7b3d06f51eacd9f5d0340630c' }
+
 ```
+#### Output
+Argument         | Description      | Format
+---------------- | ---------------- | ------
+viewSecretKey    | Private view key | string
+
 
 ### service.getSpendKeys(options)
 
-#### Method Parameters
+* ```getSpendKeys()``` method returns your spend keys.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|address|Yes|Public wallet address|string|
+#### Input
+
+Argument         | Mandatory    | Description                                  | Format
+---------------- | ------------ | -------------------------------------------- | -------
+address          | Yes          | Valid address that exists in this container  | string
+
 
 #### Example Code
 
 ```javascript
 service.getSpendKeys({
-  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocBQXi3AhcUgmc9pBcD8sdfjsqCMXNZCfuKsReWbTVZxFgZ9J6C4JY2TR7HMSYB5VaP8KaG4LghfXMzbqBQhMJki4cuKSEG6'
 }).then((result) => {
   // do something
 })
@@ -867,25 +1051,35 @@ service.getSpendKeys({
 #### Example Data
 
 ```javascript
-{
-  "spendPublicKey": "9e50b808f1e2522b7c6feddd8e2f6cdcd89ff33b623412de2061d78c84588eff33b6d9",
-  "spendSecretKey": "c6639a75a37f63f92e2f096fa262155c943b4fdc243ffb02b8178ab960bb5d0f"
-}
+{ spendPublicKey:
+   'f7ff3961f2cd25f107800b9a2f11c4a165fe4329c084bd3753a755eaaacc3cd3',
+  spendSecretKey:
+   'f9f55b215c5cfcb7a52470c2745038130ba9099b0e35340ce6efdcb6f6e3c00d' }
+
 ```
+### Output
+
+Argument          | Description          | Format
+----------------  | -------------------- | ------
+spendSecretKey    | Private spend key    | string
+spendPublicKey    | Public spend key     | string
+
 
 ### service.getMnemonicSeed(options)
 
-#### Method Parameters
+```getMnemonicSeed()``` method returns the mnemonic seed for the given deterministic address. A mnemonic seed is a list of words which can be used to recover a wallet.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|address|Yes|Public wallet address|string|
+#### Input
+
+Argument         | Mandatory    | Description                                  | Format
+---------------- | ------------ | -------------------------------------------- | -------
+address          | Yes          | Valid deterministic address that exists in this container | string
 
 #### Example Code
 
 ```javascript
 service.getMnemonicSeed({
-  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg'
 }).then((result) => {
   // do something
 })
@@ -894,10 +1088,25 @@ service.getMnemonicSeed({
 #### Example Data
 
 ```text
-river nudged peculiar ailments waking null tossed anchor erase jive eavesdrop veered truth wield stacking tattoo unplugs oven wipeout aptitude estate dazed observant oxygen oxygen
+dads vehicle fiat fountain repent radar aspire orbit awesome trolling guide drinks kickoff heron husband tutor onward legion nail yahoo arena were melting necklace vehicle
 ```
 
+#### Output
+
+Argument          | Description          | Format
+----------------  | -------------------- | ------
+mnemonicSeed      | Mnemonic seed        | string
+
+
+<aside class="notice">
+  <div>The first wallet address that is generated when the container is created is the deterministic address. Only one wallet from a multi-wallet container can be deterministic. If a non-deterministic address is given, the RPC response will be an error with the message: "Keys not deterministic."</div>
+</aside>
+
+
 ### service.getStatus()
+
+* ```service.getStatus()``` method returns information about the current RPC Wallet state: block count, known block count, last block hash and peer count.
+* No input
 
 #### Example Code
 
@@ -911,14 +1120,28 @@ service.getStatus().then((result) => {
 
 ```javascript
 {
-  "blockCount": 491214,
-  "knownBlockCount": 491215,
-  "lastBlockHash": "fc33b0fcdb8a3ed8e2de3cb36df325d67e9926d59f02d164baacf3ddefe8df12",
-  "peerCount": 8
+{ blockCount: 104557,
+  knownBlockCount: 104557,
+  lastBlockHash:
+   '7f717ceca1875e51419a7a07a7d985310805e0b089b0fc87fbbcfe93010a755a',
+  peerCount: 8 }
 }
 ```
 
+#### Output
+
+Argument         | Description                                                                | Format
+---------------- | -------------------------------------------------------------------------- | ------
+blockCount       | Node's known number of blocks                                              | int
+knownBlockCount  | Maximum known number of blocks of all seeds that are connected to the node | int
+lastBlockHash    | Hash of the last known block                                               | string
+peerCount        | Connected peers number	                                                    | int	 
+
+
 ### service.getAddresses()
+
+* ```getAddresses()``` method returns an array of your RPC Wallet's addresses.
+* No input
 
 #### Example Code
 
@@ -931,20 +1154,29 @@ service.getAddresses().then((result) => {
 #### Example Data
 
 ```javascript
-[
-  "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-  "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
-]
+[ 'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg',
+  'abLoc8YamWu4XUKddV9NZ4fk3WCqzL2XCPQh9yB7Pd88UDpmSCiZsdWYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgC9fRqa' ]
 ```
+
+**Output**
+
+Argument          | Description                                           | Format
+----------------- | ----------------------------------------------------- | ------
+addresses	        | Array of strings, where each string is an address	    | array
+
 
 ### service.createAddress(options)
 
-#### Method Parameters
+```createAddress()``` method creates an additional address in your wallet.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|secretSpendKey|No|Address secret spend key|string|
-|publicSpendKey|No|Address public spend key|string|
+#### Input
+
+Argument                 | Mandatory    | Description                                  | Format
+------------------------ | ------------ | -------------------------------------------- | -------
+secretSpendKey           | No           | Private spend key. If `secretSpendKey` was specified, RPC Wallet creates spend address | string
+publicSpendKey           | No           | Public spend key. If `publicSpendKey` was specified, RPC Wallet creates view address   | string
+newAddress               | No           | Is this a new address being created? If so, blocks before the creation timestamp will not be scanned. Defaults to true if neither keys are given, as it is guaranteed to be a new address. | bool
+scanHeight               | No           | The height to begin scanning for transactions at. Only applies if a public/secret key is supplied. This can greatly speed up wallet syncing time. | int
 
 **Note:** Both ```secretSpendKey``` and ```publicSpendKey``` are optional; however, you can only supply one or the other. Both are given below as **examples**.
 
@@ -952,8 +1184,8 @@ service.getAddresses().then((result) => {
 
 ```javascript
 service.createAddress({
-  secretSpendKey: 'c6639a75a37f63f92e2f096fa262155c943b4fdc243ffb02b8178ab960bb5d0f',
-  publicSpendKey: '9e50b808f1e2522b7c6feddd8e2f6cdcd89ff33b623412de2061d78c84588eff33b6d9'
+  secretSpendKey: 'f4abd8dfc3ffea2c96b131c22340d4b437b9722407769c9449f24d1a8bad0c0e',
+  publicSpendKey: 'db20e68b00e69ba85d161af5378ab04551e0c10f23d1df6ea29da58ddc527b2e'
 }).then((result) => {
   // do something
 })
@@ -963,17 +1195,26 @@ service.createAddress({
 
 ```javascript
 {
-  "address": "abLocv3rnGMvAdUUPZZxUmm2jSe8j9U4EfXoAzT3NByLTKD4foK6JuH2FYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYidUqc"
+  "address": "abLocAiXVFeaF9JWodjvHrPYakpxf1Bfg1yoM11ydPBaNq4AXw5kbeUYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgB2VtRs"
 }
 ```
 
+**Output**
+
+Argument          | Description                                           | Format
+----------------- | ----------------------------------------------------- | ------
+addresse	        | Array of string view, each string is an address	      | array
+
+
 ### service.deleteAddress(options)
 
-#### Method Parameters
+```deleteAddress()``` method deletes a specified address.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|address|No|Public wallet address|string|
+#### Input
+
+Argument         | Mandatory    | Description                                  | Format
+---------------- | ------------ | -------------------------------------------- | -------
+address          | Yes          | An address to be deleted                     | string
 
 #### Example Code
 
@@ -985,19 +1226,26 @@ service.deleteAddress({
 })
 ```
 
+#### Output
+
+In case of success returns an empty JSON object.
+
+
 ### service.getBalance(options)
 
-#### Method Parameters
+```getBalance()``` method returns a balance for a specified address.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|address|No|Public wallet address|string|
+#### Input
+
+Argument         | Mandatory    | Description                                          | Format
+---------------- | ------------ | ---------------------------------------------------- | -------
+address          | No           | Valid address that exists in this container          | string
 
 #### Example Code
 
 ```javascript
 service.getBalance({
-  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg'
 }).then((result) => {
   // do something
 })
@@ -1007,25 +1255,40 @@ service.getBalance({
 
 ```javascript
 {
-  "availableBalance": 60021.54,
+  "availableBalance": 1.0000,
   "lockedAmount": 0
 }
 ```
 
+#### Output
+
+Argument              | Description                                           | Format
+--------------------- | ----------------------------------------------------- | ------
+availableBalance      | Available balance of the specified address in shells  | integer
+lockedAmount          | Locked amount of the specified address in shells      | integer
+
+<aside class="notice">
+  <div>If address is not specified, <code>getBalance()</code> returns a cumulative balance of all RPC Wallet's addresses.
+  Also note, balances are expressed in shells, so a balance of 10000 is equal to 100.00 abLoc.</div>
+</aside>
+
+
 ### service.getBlockHashes(options)
 
-#### Method Parameters
+```getBlockHashes()``` method returns an array of block hashes for a specified block range.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|firstBlockIndex|Yes|The height of the blockchain to start at|integer|
-|blockCount|Yes|How many blocks to return at maximum|integer|
+#### Input
+
+Argument         | Mandatory    | Description                                     | Format
+---------------- | ------------ | ----------------------------------------------- | -------
+firstBlockIndex  | Yes          | Starting height	                                | integer
+blockCount       | Yes          | Number of blocks to process		                  | integer
 
 #### Example Code
 
 ```javascript
 service.getBlockHashes({
-  firstBlockIndex: 500000,
+  firstBlockIndex: 100000,
   blockCount: 10
 }).then((result) => {
   // do something
@@ -1035,45 +1298,58 @@ service.getBlockHashes({
 #### Example Data
 
 ```javascript
-{
-  "blockHashes": [
-    "8c9738f961a278486f27ce214d1e4d67e08f7400c8b38fe00cdd571a8d302c7d",
-    "2ef060801dd27327533580cfa538849f9e1968d13418f2dd2535774a8c494bf4",
-    "3ac40c464986437dafe9057f73780e1a3a6cd2f90e0c5fa69c5caab80556a68a",
-    "ac821fcb9e9c903abe494bbd2c8f3333602ebdb2f0a98519fc84899906a7f52b",
-    "4dcffeea7aec064ec5c03e1cb6cf58265a2b76c4f2db9e5fc4afbaf967b77bba",
-    "1b82b0df589cb11aa5a96ea97d79699af7bc54b5d2b8333847d38da660aaf9e0",
-    "007de12510667a1d56b61720257f07a3905abb3a8b479bdff926bb17d1a9e766",
-    "8f0d10ddf23aafb755e682291d56d38a20bbc17ce1d5081c15067865b6867260",
-    "5585c6bac11925fc762d0a8e6b95b3a3bd66379e74e8711e432fda3f6966bf08",
-    "ea531b1af3da7dc71a7f7a304076e74b526655bc2daf83d9b5d69f1bc4555af0"
-  ]
-}
+{ blockHashes:
+   [ 'e026316d0b95436a7d3d36247fc8adb5fcb342015eccc239b346a7e2fd64c262',
+     'd73f01f1417386243bd14854acd75817c853aee1b42bb805498a59b19f7c9b90',
+     'e538987e328c9166d88b60c3f78763bf14ec08a619179d96b8154712e6306f4f',
+     'f128754b54cbf1a93cd4e743f9ba0a44a8a8e00c614324145cb80b36f5349200',
+     '7ff0a7a78aeb01e7bd9b835642218d25dd153b001c1658b9869efdcd5d01cb6b',
+     '26238a80a7c52c8930b89053460e60a599e89d293cbea5f680911ecb2d000ade',
+     '56cf58de9e0d22c83c4bed757bdb56a35ad38364e5380ce3edbfb83dfc268e81',
+     '7661d773cd5ffc56a3e6e3deb377c8e0be5f46e9403d1000adb6055fd4ac5343',
+     'f7904821432dfdbb127419d885d292b56e9853e11468d9fa0e59c5906bf5db52',
+     'bd3dd101b769fc8b04949f9663c5bef3fa0578848c924281bc7487eb50b68c49' ] }
+
 ```
+
+#### Ouput
+
+Argument              | Description                                             | Format
+--------------------- | ------------------------------------------------------- | ------
+blockHashes		      | Array of strings, where each element is a block hash	| array
+
 
 ### service.getTransactionHashes(options)
 
-#### Method Parameters
+* ```getTransactionHashes()``` method returns an array of block and transaction hashes.
+* A transaction consists of transfers. A transfer is an amount-address pair.
+* There could be several transfers in a single transaction.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|addresses|No|Array of public wallet addresses|strings|
-|blockHash|No|Block hash to scan|string|
-|firstBlockIndex|No|The height of the blockchain to start at|integer|
-|blockCount|Yes|How many blocks to return at maximum|integer|
-|paymentId|No|Payment ID to scan for|string|
+#### Input
 
-***Note:*** Only **one** of either ```blockHash``` or ```firstBlockIndex``` may be supplied, but not both.
+Argument        | Mandatory                                                                       | Description                                             | Format
+--------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------- | -------
+addresses       | No                                                                              | Array of strings, where each string is an address		    | array
+blockHash       | No. Only one of these parameters (`blockHash` or `firstBlockIndex`) is allowed. | Hash of the starting block		                          | string
+firstBlockIndex | No. Only one of these parameters (`blockHash` or `firstBlockIndex`) is allowed. | Starting height >0 (1,2,3...)		                        | integer
+blockCount      | Yes                                                                             | Number of blocks to return transaction hashes from		  | integer
+paymentId       | No. 64 characters                                                               | Valid payment ID		                                    | string
+
+
+* If `paymentId` parameter is set, `getTransactionHashes()` method returns transaction hashes of transactions that contain specified payment ID in the given block range.
+* If `addresses` parameter is set, `getTransactionHashes()` method returns transaction hashes of transactions that contain transfer from at least one of specified addresses.
+* If both above mentioned parameters are set, `getTransactionHashes()` method returns transaction hashes of transactions that contain both specified payment ID and transfer from at least one of specified addresses.
+* Only **one** of either ```blockHash``` or ```firstBlockIndex``` may be supplied, but not both.
 
 #### Example Code
 
 ```javascript
 service.getTransactionHashes({
   addresses: [
-    "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-    "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
+    "abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg",
+    "abLoc8YamWu4XUKddV9NZ4fk3WCqzL2XCPQh9yB7Pd88UDpmSCiZsdWYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgC9fRqa"
   ],
-  blockHash: 'f98d6bbe80a81b3aa0aebd004096e2223524f58f347a1f21be122450f244b948',
+  blockHash: '5339e77b028a29ace5cfb2d94c1fe869dd810aed3a9d7e1280aa192311e427e5',
   blockCount: 1
 }).then((result) => {
   // do something
@@ -1083,42 +1359,55 @@ service.getTransactionHashes({
 #### Example Data
 
 ```javascript
-{
-  "items": [
-    {
-      "blockHash": "f98d6bbe80a81b3aa0aebd004096e2223524f58f347a1f21be122450f244b948",
-      "transactionHashes": [
-        "d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751"
-      ]
-    }
-  ]
-}
+[ { blockHash:
+     'd537de1cd0492c67b49cbbe569c91a4f564bdd16dc4dc19c0f09172ee82da23c',
+    transactionHashes:
+     [ '6a7028e29b5796a31d2cbe5aeb5931694fe15caf0639c26045c9ac8103130a44' ] } ]
 ```
+
+#### Output
+
+Argument   | Description                                         |                                                              |            |                                       
+---------- | --------------------------------------------------- | ------------------------------------------------------------ | ---------- |
+items	     | **Array of**                                        |	                                                            |            |                                                                 
+    	     | **Attribute**            	                         | **Description**                                              | **Format** |                                        
+           | blockHash                                           | Hash of the block which contains transaction hashes          | string     |
+           | transactionHashes                                   | Array of strings, where each string is a transaction hash    | array      |
+
+
 
 ### service.getTransactions(options)
 
-#### Method Parameters
+* ```getTransactions()``` method returns an array of block and transaction hashes.
+* A transaction consists of transfers. A transfer is an amount-address pair.
+* There could be several transfers in a single transaction.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|addresses|No|Array of public wallet addresses|strings|
-|blockHash|No|Block hash to scan|string|
-|firstBlockIndex|No|The height of the blockchain to start at|integer|
-|blockCount|Yes|How many blocks to return at maximum|integer|
-|paymentId|No|Payment ID to scan for|string|
+#### Input
 
-***Note:*** Only **one** of either ```blockHash``` or ```firstBlockIndex``` may be supplied, but not both.
+Argument        | Mandatory                                                                       | Description                                             | Format
+--------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------- | -------
+addresses       | No                                                                              | Array of strings, where each string is an address		    | array
+blockHash       | No. Only one of these parameters (`blockHash` or `firstBlockIndex`) is allowed. | Hash of the starting block		                          | string
+firstBlockIndex | No. Only one of these parameters (`blockHash` or `firstBlockIndex`) is allowed. | Starting height >0 (1,2,3...)		                        | integer
+blockCount      | Yes                                                                             | Number of blocks to return transaction hashes from		  | integer
+paymentId       | No. 64 characters                                                               | Valid payment ID		                                    | string
+
+
+* If `paymentId` parameter is set, `getTransactions()` method returns transactions that contain specified payment ID in the given block range.
+* If `addresses` parameter is set, `getTransactions()` method returns transactions that contain transfer from at least one of specified addresses.
+* If both above mentioned parameters are set, `getTransactions()` method returns transactions that contain both specified payment ID and transfer from at least one of specified addresses.
+* Only **one** of either ```blockHash``` or ```firstBlockIndex``` may be supplied, but not both.
 
 #### Example Code
 
 ```javascript
 service.getTransactions({
   addresses: [
-    "abLocux9QBmzCYEGgdWXHEQCAm6vY9vZHkbGmx8ev5LxhYk8N71Pp7PWFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJZ25i9n",
-    "abLocv1mPerM2ckUuNvxrkzDE7QKd9PFVUXYbVfbvx8YxB5BYEdSqQvUFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJbQMVgF"
+    "abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg",
+    "abLoc8YamWu4XUKddV9NZ4fk3WCqzL2XCPQh9yB7Pd88UDpmSCiZsdWYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgC9fRqa"
   ],
-  firstBlockIndex: 469419,
-  blockCount: 1
+  firstBlockIndex: 104570,
+  blockCount: 5
 }).then((result) => {
   // do something
 })
@@ -1127,40 +1416,73 @@ service.getTransactions({
 #### Example Data
 
 ```javascript
-[
-  {
-    "blockHash": "f98d6bbe80a81b3aa0aebd004096e2223524f58f347a1f21be122450f244b948",
-    "transactionAmount": 10.5,
-    "blockIndex": 469419,
-    "extra": "014fa15a893c92e040fc97c8bda6d811685a269309b37ad444755099cbed6d8438",
-    "fee": 1,
-    "isBase": false,
-    "paymentId": "",
-    "state": 0,
-    "timestamp": 1526876765,
-    "transactionHash": "d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751",
-    "address": "abLocv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
-    "amount": 10.5,
-    "type": 0,
-    "unlockTime": 0,
-    "inbound": true
-  }
-]
+[ { blockHash:
+     'd537de1cd0492c67b49cbbe569c91a4f564bdd16dc4dc19c0f09172ee82da23c',
+    transactionAmount: 0.0005,
+    blockIndex: 104572,
+    extra:
+     '01800383a3084f99580038e74d2a02cdc104384ec7bc95243753595c10bf03e784',
+    fee: 0.0001,
+    isBase: false,
+    paymentId: '',
+    state: 0,
+    timestamp: 1540835452,
+    transactionHash:
+     '6a7028e29b5796a31d2cbe5aeb5931694fe15caf0639c26045c9ac8103130a44',
+    address:
+     'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg',
+    amount: 0.0005,
+    type: 0,
+    inbound: true,
+    unlockTime: 0 } ]
 ```
+
+#### Output
+
+Argument   |                              | Description                                       | Format
+---------- | ---------------------------- | --------------------------------------------------|-----------
+items	     | **Array of**                 |                                                   |
+    	     | block_hash                   | hash of the block which contains a transaction    | string
+    	     | transactions                 | see below                                         | array
+
+#### Transaction attributes
+
+Argument            | Description                                                                   | Format
+------------------- | ------------------------------------------------------------------------------|-----------
+transactionHash     | Hash of the transaction                                                       | string
+blockIndex          | Number of the block that contains a transaction                               | int
+timestamp           | Timestamp of the transaction                                                  | int
+isBase              | Shows if the transaction is a CoinBase transaction or not                     | boolean
+unlockTime          | Height of the block when transaction is going to be available for spending    | int
+amount              | Amount of the transaction                                                     | int
+fee                 | Transaction fee                                                               | int
+extra               | Hash of the  transaction                                                      | string
+paymentId           | Payment ID of the transaction (optional)                                      | string
+transfers           | Array of address (string), amount (int)                                       | array
+
 
 ### service.getUnconfirmedTransactionHashes(options)
 
-#### Method Parameters
+* ```getUnconfirmedTransactionHashes()``` method returns information about the current unconfirmed transaction pool or for a specified addresses.
+* Transaction consists of transfers. Transfer is an amount-address pair.
+* There could be several transfers in a single transaction.
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|addresses|No|Array of public wallet addresses|strings|
+#### Input
+
+Argument    | Mandatory     | Description                                                | Format
+----------- | ------------- | ---------------------------------------------------------- | -------
+addresses   | No            | Array of strings, where each string is a valid address     | array
+
+<aside class="notice">
+  <div>If addresses parameter is set, transactions that contain transfer from at least one of specified addresses are returned.</div>
+</aside>
+
 
 #### Example Code
 
 ```javascript
 service.getUnconfirmedTransactionHashes({
-  address: 'abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ'
+  address: 'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg'
 }).then((result) => {
   // do something
 })
@@ -1169,29 +1491,37 @@ service.getUnconfirmedTransactionHashes({
 #### Example Data
 
 ```javascript
-{
-  "transactionHashes": [
-    "80185093fj029jv029j3g092jb32904j0b34jb34gb",
-    "j09213fj20vjh02vb2094jb0394jgb039bj03jb34b"
-  ]
-}
+{ transactionHashes:
+   [ 'f731190b013ac313d6cf2edba86e1e1fe1f0220c2bb59b80d817b0957f0d0e4d' ] }
 ```
+
+#### Output
+
+Argument               | Description                                                                    | Format
+---------------------- | ------------------------------------------------------------------------------ | ------
+transactionHashes      | Array of strings, where each string is a hash of an unconfirmed transaction	| array
+
 
 ### service.getTransaction(options)
 
+* ```getTransaction()``` method returns information about a particular transaction.
+* Transaction consists of transfers. Transfer is an amount-address pair.
+* There could be several transfers in a single transaction.
+
 ***Special Note:*** Any and all amounts/fees will already be in HUMAN readable units. DO NOT DIVIDE AMOUNTS AGAIN unless you've specified ```decimalDivisor``` as ```1``` in the options. You have been warned.
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|transactionHash|Yes|The hash of the transaction|string|
+Argument            | Mandatory     | Description                                                | Format
+------------------- | ------------- | ---------------------------------------------------------- | -------
+transactionHash     | Yes           | Hash of the requested transaction                          | string
+
 
 #### Example Code
 
 ```javascript
 service.getTransaction({
-  transactionHash: 'd01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751'
+  transactionHash: 'f731190b013ac313d6cf2edba86e1e1fe1f0220c2bb59b80d817b0957f0d0e4d'
 }).then((result) => {
   // do something
 })
@@ -1200,38 +1530,48 @@ service.getTransaction({
 #### Example Data
 
 ```javascript
-{
-  "transaction": {
-    "amount": 10,
-    "blockIndex": 469419,
-    "extra": "014fa15a893c92e040fc97c8bda6d811685a269309b37ad444755099cbed6d8438",
-    "fee": 1,
-    "isBase": false,
-    "paymentId": "",
-    "state": 0,
-    "timestamp": 1526876765,
-    "transactionHash": "d01e448f7b631cebd989e3a150258b0da59c66f96adecec392bbf61814310751",
-    "transfers": [
-      {
-        "address": "abLocv2MXbzaPYVYqtdNwYpKY7azcVjBjsETN188BpKwi2q83NibqJWtFYL9CHxpWph2wCPZcJ6tkPfUxVZcUN8xmYsSDJYpcE3D",
-        "amount": 10,
-        "type": 0
-      },
-      {
-        "address": "",
-        "amount": -20,
-        "type": 0
-      },
-      {
-        "address": "",
-        "amount": 9.9,
-        "type": 0
-      }
-    ],
-    "unlockTime": 0
-  }
-}
+{ amount: 0.0002,
+  blockIndex: 104587,
+  extra:
+   '01f773f10b35cbee8a509ff5405075d34666086714a645386492f3ce9f58439db0',
+  fee: 0.0001,
+  isBase: false,
+  paymentId: '',
+  state: 0,
+  timestamp: 1540837816,
+  transactionHash:
+   'f731190b013ac313d6cf2edba86e1e1fe1f0220c2bb59b80d817b0957f0d0e4d',
+  transfers:
+   [ { address:
+        'abLocAR4dJi14yKV7ixsMMhW77HZt8c6HCYM5qdJDnwkDQByQwbBbPAYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgBaK6xg',
+       amount: 0.0002,
+       type: 0 },
+     { address: '', amount: -0.09, type: 0 },
+     { address: '', amount: 0.0897, type: 0 } ],
+  unlockTime: 0 }
 ```
+
+#### Output
+
+Argument   | Description
+---------- | ------------
+transaction| see below
+
+Transaction attributes:
+
+Argument            | Description                                                                   | Format
+------------------- | ------------------------------------------------------------------------------|-------
+transactionHash     | Hash of the transaction                                                       | string
+blockIndex          | Number of the block that contains a transaction                               | int
+timestamp           | Timestamp of the transaction                                                  | int
+isBase              | Shows if the transaction is a CoinBase transaction or not                     | boolean
+unlockTime          | Height of the block when transaction is going to be available for spending    | int
+amount              | Amount of the transaction                                                     | int
+fee                 | Transaction fee                                                               | int
+extra               | Hash of the  transaction                                                      | string
+paymentId           | Payment ID of the transaction (optional)                                      | string
+transfers           | Array of addresses (string), amount (int)                                     | array
+
 
 ### service.newTransfer(address, amount)
 
@@ -1249,30 +1589,38 @@ var transfer = service.newTransfer('abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3
 
 ### service.sendTransaction(options)
 
+```sendTransaction()``` method allows you to send transaction(s) to one or several addresses. Also, it allows you to use a payment ID for a transaction to a single address.
+
 ***Special Note:*** Any and all amounts/fees will already be in HUMAN readable units. DO NOT SUPPLY NATIVE CURRENCY AMOUNTS unless you've specified ```decimalDivisor``` as ```1``` in the options. You have been warned.
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|addresses|No|Array of public wallet addresses|strings|
-|transfers|Yes|Array of transfer objects (see *service.newTransfer*) to send funds to|newTransfer|
-|fee|No|Transaction fee for the transaction|float|
-|unlockTime|No|Blockheight ot unlock the transaction at, the UTC timestamp, or ```0``` for now.|integer|
-|mixin|No|The number of mixins to use|integer|
-|extra|No|Extra data to put in the transaction|string|
-|paymentId|No|The payment ID for the transaction|string|
-|changeAddress|No|Where to send any change from the transaction. If not specified, the first address in the wallet container is used.|string|
+Argument        | Mandatory     | Description                                                                              | Format
+--------------- | ------------- | ---------------------------------------------------------------------------------------- | -------
+addresses       | No            | Array of strings, where each string is an address to take the funds from                 | array
+transfers       | Yes           | Array of objects, address: (string address), amount: (int amount)                        | array
+fee             | Yes           | Transaction fee. Minimal fee in BLOC network is 0.0001 BLOC. As with other amounts use whole units, 1 BLOC = 1000 units, so 0.0001 BLOC = 1 unit | integer
+unlockTime      | No            | The block height at which the transaction will be unlocked for spending.                 | integer
+anonymity       | Yes           | Privacy (mixin) (level from 0 to 10)                                                     | integer
+extra           | No            | String of variable length. Can contain A-Z, 0-9 characters.                              | string
+paymentId       | No            | Payment ID (64 hex characters)                                                           | string
+changeAddress   | No            | Where to send any change from the transaction. If not specified, the first address in the wallet container is used.                          | string
+
+* If container contains only 1 address, `changeAddress` field can be left empty and the change is going to be sent to this address.
+* If addresses field contains only 1 address, `changeAddress` can be left empty and the change is going to be sent to this address.
+* In the rest of the cases, `changeAddress` field is mandatory and must contain an address.
 
 #### Example Code
 
 ```javascript
 service.sendTransaction({
+addresses: 'abLocAiXVFeaF9JWodjvHrPYakpxf1Bfg1yoM11ydPBaNq4AXw5kbeUYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgB2VtRs',
   transfers: [
-    service.newTransfer('abLocv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ', 1000000)
+    service.newTransfer('abLoc9vG2prXqhQi4YiAggPUPQ4wr8PiWR16wKS4xGHQE99pBeXpM91ewSF8AsD6ETTFXDY5JEcMo2A1Y2bHqfMi8uA6zM9YAhb', 1)
   ],
   fee: 1,
-  mixin: 7,
+  mixin: 0,
+  changeAddress: 'abLocAiXVFeaF9JWodjvHrPYakpxf1Bfg1yoM11ydPBaNq4AXw5kbeUYZuE4QGJVYfRc1TPmysMAuioPFuanAumEQoKCgB2VtRs',
 }).then((result) => {
   // do something
 })
@@ -1282,26 +1630,40 @@ service.sendTransaction({
 
 ```javascript
 {
-  "transactionHash": "93faedc8b8a80a084a02dfeffd163934746c2163f23a1b6022b32423ec9ae08f"
+  "transactionHash": "0f3543118e5bc1e806ef28550f2199b653f25c913d5923bd635b95bc0020b747"
 }
 ```
 
+#### Output
+
+Argument              | Description                         | Format
+--------------------- | ----------------------------------- | ------
+transactionHash	      | Hash of the sent transaction    		| string
+
+
 ### service.createDelayedTransaction(options)
+
+```createDelayedTransaction()``` method creates a delayed transaction. Such transactions are not sent into the network automatically and should be pushed using `sendDelayedTransaction` method.
 
 ***Special Note:*** Any and all amounts/fees will already be in HUMAN readable units. DO NOT SUPPLY NATIVE CURRENCY AMOUNTS unless you've specified ```decimalDivisor``` as ```1``` in the options. You have been warned.
 
-#### Method Parameters
+#### Input
 
-|Argument|Mandatory|Description|Format|
-|---|---|---|---|
-|addresses|No|Array of public wallet addresses|strings|
-|transfers|Yes|Array of transfer objects (see *service.newTransfer*) to send funds to|newTransfer|
-|fee|No|Transaction fee for the transaction|float|
-|unlockTime|No|Blockheight ot unlock the transaction at, the UTC timestamp, or ```0``` for now.|integer|
-|mixin|No|The number of mixins to use|integer|
-|extra|No|Extra data to put in the transaction|string|
-|paymentId|No|The payment ID for the transaction|string|
-|changeAddress|No|Where to send any change from the transaction. If not specified, the first address in the wallet container is used.|string|
+Argument        | Mandatory     | Description                                                                              | Format
+--------------- | ------------- | ---------------------------------------------------------------------------------------- | -------
+addresses       | No            | Array of strings, where each string is an address to take the funds from                 | array
+transfers       | Yes           | Array of objects, address: (string address), amount: (int amount)                        | array
+fee             | Yes           | Transaction fee. Minimal fee in BLOC network is 0.0001 BLOC. As with other amounts use whole units, 1 BLOC = 1000 units, so 0.0001 BLOC = 1 unit | integer
+unlockTime      | No            | The block height at which the transaction will be unlocked for spending.                 | integer
+anonymity       | Yes           | Privacy (mixin) (level from 0 to 10)                                                     | integer
+extra           | No            | String of variable length. Can contain A-Z, 0-9 characters.                              | string
+paymentId       | No            | Payment ID (64 hex characters)                                                           | string
+changeAddress   | No            | Where to send any change from the transaction. If not specified, the first address in the wallet container is used.                          | string
+
+* If container contains only 1 address, `changeAddress` field can be left empty and the change is going to be sent to this address
+* If addresses field contains only 1 address, `changeAddress` can be left empty and the change is going to be sent to this address
+* In the rest of the cases, `changeAddress` field is mandatory and must contain an address.
+* Outputs that were used for this transactions will be locked until the transaction is sent or cancelled
 
 #### Example Code
 
@@ -1502,8 +1864,7 @@ Retrieves the last 100 (as defined in ) blocks from the first block hash supplie
 ```javascript
 client.queryBlocksLite({
   blockHashes: [
-    '5b926d9fac41fbc53bf7c5ffc7e45e345f8c26aaefec9d3f9b019097a8827c12',
-    '08aaf1b5cf2d7b62e12bd9182051225ccb1dabea9ee6847d969dbf60b08619af'
+    'fce539a608a406354522d24a43d5d47c85939bc8af961cf1146d09e5028adfa2'
   ]
 }).then((result) => {
   // do something
@@ -1515,113 +1876,55 @@ client.queryBlocksLite({
 ***Note:*** Example data has been heavily truncated for display below.
 
 ```javascript
-{
-    "currentHeight": 612079,
-    "fullOffset": 602009,
-    "items": [
-        {
-            "blockShortInfo.block": [
-                4, 
-                0,
-                123,
-                173,
-                245,
-                37,
-                123,
-                64,
-                56,
-                108,
-                59,
-                95,
-                224
-            ],
-            "blockShortInfo.blockId": "08aaf1b5cf2d7b62e12bd9182051225ccb1dabea9ee6847d969dbf60b08619af",
-            "blockShortInfo.txPrefixes": [
-                {
-                    "transactionPrefixInfo.txHash": "5898af29be9af1bd70bd8abe0cc8adab7d1b824a8860de0833da5e9eb06cd4df",
-                    "transactionPrefixInfo.txPrefix": {
-                        "extra": "011dfaca5515269db2c4f7aa422e1064ed8b32deebfe09316f72c0558ec3c4bd8f022100f3bb994d0787998c710905ddea5e1cd40adc318f953570036e5bb003809bc41c",
-                        "unlock_time": 0,
-                        "version": 1,
-                        "vin": [
-                            {
-                                "type": "02",
-                                "value": {
-                                    "amount": 20000,
-                                    "k_image": "8227547d28430bd014891056997741e50a5bbef59f7ed69a61d73dd3c5e18519",
-                                    "key_offsets": [
-                                        489700,
-                                        7967,
-                                        1,
-                                        1,
-                                        1,
-                                        1
-                                    ]
-                                }
-                            }
-                        ],
-                        "vout": [
-                            {
-                                "amount": 800,
-                                "target": {
-                                    "data": {
-                                        "key": "ea4522afedd8e532d11e047409e7db76918a3f453706dfb61ed00e3aac54f76c"
-                                    },
-                                    "type": "02"
-                                }
-                            },
-                            {
-                                "amount": 7000,
-                                "target": {
-                                    "data": {
-                                        "key": "cbad8e84098579d5d58614ba4edcbdee13fe933cc5bc4d889bf741cd97e0fae4"
-                                    },
-                                    "type": "02"
-                                }
-                            },
-                            {
-                                "amount": 60000,
-                                "target": {
-                                    "data": {
-                                        "key": "d612ec8aacb4ee83b1b877d13126aea821117c0abf37102d5b11b56d55cfee33"
-                                    },
-                                    "type": "02"
-                                }
-                            },
-                            {
-                                "amount": 100000,
-                                "target": {
-                                    "data": {
-                                        "key": "0121221682026d807f8a13222395ac9b7e05ef059090dec83feb6abdc9bb4c3a"
-                                    },
-                                    "type": "02"
-                                }
-                            },
-                            {
-                                "amount": 40000000,
-                                "target": {
-                                    "data": {
-                                        "key": "8f4e23b602897c2b0643131166f674054977ed6fad645027537da7905691389b"
-                                    },
-                                    "type": "02"
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        }
-    ],
-    "startHeight": 602009,
-    "status": "OK"
-}
+{ currentHeight: 104638,
+  fullOffset: 104630,
+  items:
+   [ { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'fce539a608a406354522d24a43d5d47c85939bc8af961cf1146d09e5028adfa2',
+       'blockShortInfo.txPrefixes': [Array] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'f8509ed5c6ead358722feafcb175cc986cd8b378f4281a103fd65fae7fd63ec0',
+       'blockShortInfo.txPrefixes': [Array] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'f0e57aa84c5d097ee6697a4baba220c15037ea647d3418f8e31d5d4c5b07c47a',
+       'blockShortInfo.txPrefixes': [] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'f0e8c895acd1f6ea48e6110d928308a1faab5137f64f1c11e091f0b8c2349585',
+       'blockShortInfo.txPrefixes': [] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        '828ce2138fe9f77e9b884a4310b2db4de58c21f67a4cce79adbe1db9023aa78d',
+       'blockShortInfo.txPrefixes': [Array] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        '03861676a32ce8d9a42efc0001e9af74f6b583fcde4620ae28a4fce05fd51af5',
+       'blockShortInfo.txPrefixes': [] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        '4e99248db2db0c473f54a96f76cba67de2d0f814ca8a324c806c1c285f3b8ac8',
+       'blockShortInfo.txPrefixes': [] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'fb2fc7a2b5adef0bf5393ba9333fb09361feab8633991a4213c99ab4588c4eff',
+       'blockShortInfo.txPrefixes': [] },
+     { 'blockShortInfo.block': [Array],
+       'blockShortInfo.blockId':
+        'da6704e111e9cc07945750daa5e7113b523bd7bfa28a7932a3d25b916f3a3205',
+       'blockShortInfo.txPrefixes': [] } ],
+  startHeight: 104630,
+  status: 'OK' }
+
 ```
 
 ### client.getIndexes(options)
 
 Returns the output indexes of the transaction
 
-#### Method Parameters
+#### Input
 
 |Argument|Mandatory|Description|Format|
 |---|---|---|---|
@@ -1631,7 +1934,7 @@ Returns the output indexes of the transaction
 
 ```javascript
 client.getIndexes({
-  transactionHash: "749099c72571142234f0c8a5b394621576fac72b82507daa386a69519e210d9b"
+  transactionHash: "8612573de869bdc8f8f2217426a273d023b08644b02a9aba076d5b4863ea74f5"
 }).then((result) => {
   // do something
 })
@@ -1640,21 +1943,7 @@ client.getIndexes({
 #### Example Data
 
 ```javascript
-{
-  "o_indexes": [
-    144422,
-    678884,
-    685376,
-    746333,
-    418673,
-    418674,
-    90455,
-    90456,
-    21042,
-    8445
-  ],
-  "status": "OK"
-}
+{ o_indexes: [ 21035 ], status: 'OK' }
 ```
 
 ### client.getRandomOutputs(options)
@@ -1671,10 +1960,10 @@ client.getIndexes({
 ```javascript
 client.getRandomOutputs({
   amounts: [
-    100,
-    1000
+    1,
+    100
   ],
-  mixin: 3
+  mixin: 0
 }).then((result) => {
   // do something
 })
@@ -1683,45 +1972,8 @@ client.getRandomOutputs({
 #### Example Data
 
 ```javascript
-{
-  "outs": [
-    {
-      "amount": 100,
-      "outs": [
-        {
-          "global_amount_index": 862926,
-          "out_key": "adcb0670f3709bb3380199f0f442e67a857da68917fde0b16d0bd7bb2672cb56"
-        },
-        {
-          "global_amount_index": 862927,
-          "out_key": "4c536a269ccfdd0b6211fb9303db842ac9e6ea166569f901bf3238d656701db6"
-        },
-        {
-          "global_amount_index": 862928,
-          "out_key": "7d38361739d054599893de18eab1055c451d7cf210684f761cf9f8f1862782dc"
-        }
-      ]
-    },
-    {
-      "amount": 1000,
-      "outs": [
-        {
-          "global_amount_index": 850191,
-          "out_key": "85682f46c02ecc071b1f98af39752ffc61162e107d7c837a4cde96b184c6c55a"
-        },
-        {
-          "global_amount_index": 850192,
-          "out_key": "27cfee9e182b61cfe34935f73f4ef54c323dee5766c7cae06c0d84b1e5cdf67f"
-        },
-        {
-          "global_amount_index": 850193,
-          "out_key": "80befdebea397133f14f64a941682dc174f4eb139cf4542a37362371f7f66c42"
-        }
-      ]
-    }
-  ],
-  "status": "OK"
-}
+{ outs: [ { amount: 1, outs: [] }, { amount: 100, outs: [] } ],
+  status: 'OK' }
 ```
 
 ### client.getPoolChanges(options)
